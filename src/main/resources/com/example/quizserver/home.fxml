@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="main_page" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quizserver.HomeController">
+   <children>
+      <AnchorPane prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #ff2052;">
+         <children>
+            <Label layoutX="239.0" layoutY="11.0" text="Quiz APP" textFill="WHITE">
+               <font>
+                  <Font name="Bodoni MT Black" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="50.0" prefHeight="350.0" prefWidth="150.0" style="-fx-background-color: #f2f3f4;">
+         <children>
+            <Button id="bt_home" fx:id="bt_home" layoutX="5.0" layoutY="56.0" mnemonicParsing="false" onAction="#switchMenus" prefHeight="40.0" prefWidth="140.0" text="Home">
+               <font>
+                  <Font name="Berlin Sans FB" size="16.0" />
+               </font>
+            </Button>
+            <Button id="bt_create" fx:id="bt_create" layoutX="5.0" layoutY="106.0" mnemonicParsing="false" onAction="#switchMenus" prefHeight="40.0" prefWidth="140.0" text="Create">
+               <font>
+                  <Font name="Berlin Sans FB" size="16.0" />
+               </font>
+            </Button>
+            <Button id="bt_exit" fx:id="bt_exit" layoutX="5.0" layoutY="296.0" mnemonicParsing="false" onAction="#ExitButtonOnAction" prefHeight="40.0" prefWidth="140.0" text="Exit">
+               <font>
+                  <Font name="Berlin Sans FB" size="16.0" />
+               </font>
+            </Button>
+            <Label fx:id="lb_username" layoutX="24.0" layoutY="22.0" text="Welcome user !">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Button id="bt_create" fx:id="bt_summary" layoutX="5.0" layoutY="156.0" mnemonicParsing="false" onAction="#switchMenus" prefHeight="40.0" prefWidth="140.0" text="Summary">
+               <font>
+                  <Font name="Berlin Sans FB" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="pane_home" layoutX="150.0" layoutY="50.0" prefHeight="350.0" prefWidth="450.0">
+         <children>
+            <AnchorPane layoutX="330.0" prefHeight="350.0" prefWidth="120.0" style="-fx-background-color: #f2f3f4;">
+               <children>
+                  <Label layoutX="11.0" layoutY="14.0" prefHeight="87.0" prefWidth="98.0" text="Select a quiz for details" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="Bodoni MT Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <AnchorPane fx:id="pane_quizFunction" layoutX="10.0" layoutY="78.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #ffffff;">
+                     <children>
+                        <Button fx:id="bt_startQ" layoutX="12.0" layoutY="14.0" mnemonicParsing="false" onAction="#startQuizValid" prefWidth="80.0" text="Start" />
+                        <Button fx:id="bt_endQ" layoutX="12.0" layoutY="80.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="80.0" text="End" />
+                        <Button fx:id="bt_viewQ" layoutX="12.0" layoutY="47.0" mnemonicParsing="false" prefWidth="80.0" text="View" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="350.0" prefWidth="330.0">
+               <children>
+                  <AnchorPane layoutX="26.0" layoutY="14.0" prefHeight="80.0" prefWidth="130.0" style="-fx-background-color: #0cc0df;">
+                     <children>
+                        <Label layoutX="23.0" layoutY="14.0" text="Total Users" textFill="WHITE">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lb_totalUsers" alignment="CENTER" contentDisplay="CENTER" layoutX="43.0" layoutY="47.0" prefHeight="18.0" prefWidth="44.0" text="0" textFill="WHITE" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="178.0" layoutY="14.0" prefHeight="80.0" prefWidth="130.0" style="-fx-background-color: #0cc0df;">
+                     <children>
+                        <Label layoutX="19.0" layoutY="14.0" text="Total Quizes" textFill="WHITE">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lb_totalQuiz" alignment="CENTER" layoutX="46.0" layoutY="47.0" prefHeight="18.0" prefWidth="38.0" text="0" textFill="WHITE" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="26.0" layoutY="116.0" prefHeight="222.0" prefWidth="283.0" style="-fx-background-color: #f2f3f4;">
+                     <children>
+                        <ScrollPane fx:id="menu_scrolPane" layoutX="6.0" layoutY="6.0" prefHeight="208.0" prefWidth="270.0">
+                           <content>
+                              <GridPane fx:id="menu_gridPane" prefHeight="22.0" prefWidth="103.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                              </GridPane>
+                           </content>
+                        </ScrollPane>
+                     </children></AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="pane_create" layoutX="150.0" layoutY="50.0" prefHeight="350.0" prefWidth="450.0" visible="false">
+         <children>
+            <AnchorPane prefHeight="350.0" prefWidth="330.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="22.0" text="Question">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField id="tf_question" fx:id="tf_question" layoutX="10.0" layoutY="50.0" prefHeight="26.0" prefWidth="310.0" promptText="question" />
+                  <Label layoutX="14.0" layoutY="89.0" text="Answer">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tf_answer1" layoutX="25.0" layoutY="123.0" prefHeight="26.0" prefWidth="294.0" />
+                  <Label layoutX="10.0" layoutY="126.0" text="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tf_answer2" layoutX="25.0" layoutY="159.0" prefHeight="26.0" prefWidth="294.0" />
+                  <Label layoutX="10.0" layoutY="162.0" text="2">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tf_answer3" layoutX="25.0" layoutY="198.0" prefHeight="26.0" prefWidth="294.0" />
+                  <Label layoutX="10.0" layoutY="201.0" text="3">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tf_answer4" layoutX="25.0" layoutY="234.0" prefHeight="26.0" prefWidth="294.0" />
+                  <Label layoutX="10.0" layoutY="237.0" text="4">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="bt_createQ" layoutX="115.0" layoutY="310.0" mnemonicParsing="false" onAction="#createQuestion" prefWidth="100.0" text="Create" />
+                  <Label layoutX="14.0" layoutY="273.0" text="Right Answer">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="cb_rightAnswer" layoutX="115.0" layoutY="271.0" prefHeight="26.0" prefWidth="73.0" promptText="choose answer" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="330.0" prefHeight="350.0" prefWidth="120.0" style="-fx-background-color: #5ce1e6;">
+               <children>
+                  <Label layoutX="23.0" layoutY="31.0" text="Quiz Name">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tf_quizName" layoutX="10.0" layoutY="60.0" prefWidth="100.0" />
+                  <AnchorPane layoutX="8.0" layoutY="100.0" prefHeight="189.0" prefWidth="102.0" style="-fx-background-color: #ffffff;" />
+                  <Button fx:id="bt_finishQ" layoutX="10.0" layoutY="310.0" mnemonicParsing="false" onAction="#createQuiz" prefWidth="100.0" text="Finish" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="pane_summary" layoutX="150.0" layoutY="50.0" prefHeight="350.0" prefWidth="450.0" visible="false">
+         <children>
+            <AnchorPane layoutX="15.0" layoutY="14.0" prefHeight="150.0" prefWidth="422.0" style="-fx-background-color: #f2f3f4;">
+               <children>
+                  <TableView layoutX="130.0" layoutY="-40.0" prefHeight="160.0" prefWidth="422.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="Number" />
+                      <TableColumn prefWidth="220.79998779296875" text="User Name" />
+                        <TableColumn minWidth="0.0" prefWidth="125.60003662109375" text="Marks" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="15.0" layoutY="175.0" prefHeight="162.0" prefWidth="422.0" style="-fx-background-color: #f2f3f4;">
+               <children>
+                  <BarChart layoutX="-7.0" layoutY="-98.0" prefHeight="302.4" prefWidth="493.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </BarChart>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
