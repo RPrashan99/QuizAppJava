@@ -45,6 +45,10 @@ public class Server extends Thread {
         }
     }
 
+    public int getID(){
+        return clientId;
+    }
+
     public void messageProcess(String message){
         String patternUserName = "User(\\d+):Registered";
         String patternAnswers = "User:(\\d+),(\\d+):(\\d+)";
@@ -52,7 +56,7 @@ public class Server extends Thread {
         if(message.matches(patternUserName)){
             Matcher matcher = Pattern.compile(patternUserName).matcher(message);
             String userName = matcher.group(1);
-            HomeController.userRegister(userName);
+            HomeController.userRegister(userName, clientId);
         } else if (message.matches(patternAnswers)) {
             Matcher matcher = Pattern.compile(patternUserName).matcher(message);
             String userName = matcher.group(1);
@@ -86,24 +90,16 @@ public class Server extends Thread {
         }
     }
 
-//    public void receiveMessageFromClient(VBox vBox){
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                while(client.isConnected()){
-//                    try {
-//                        String messageFromClient = bufferedReader.readLine();
-//                        ServerController.addLabel(messageFromClient, vBox);
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                        System.out.println("Error receiving answers from client");
-//                        closeEverything(client,bufferedReader, bufferedWriter);
-//                        break;
-//                    }
-//                }
-//            }
-//        }).start();
-//    }
+    public void sendMarks(String marks){
+        try {
+            bufferedWriter.write(marks);
+            bufferedWriter.newLine();
+            bufferedWriter.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error sending marks to user");
+        }
+    }
 
     public void closeEverything(Socket client, BufferedReader bufferedReader, BufferedWriter bufferedWriter){
         try{

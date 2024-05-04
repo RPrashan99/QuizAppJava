@@ -1,0 +1,7 @@
+
+.custom-label {
+    -fx-background-color: lightblue; /* Set background color */
+    -fx-background-radius: 10; /* Set curved border radius */
+    -fx-text-fill: white; /* Set text color */
+    -fx-padding: 10px; /* Optional: Add padding */
+}

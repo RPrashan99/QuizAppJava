@@ -5,13 +5,18 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
 
@@ -75,6 +80,12 @@ public class HomeController implements Initializable {
     private AnchorPane pane_quizFunction;
 
     @FXML
+    private GridPane menu_gridPane;
+
+    @FXML
+    private GridPane pane_gridQus;
+
+    @FXML
     private TextField tf_answer1;
 
     @FXML
@@ -106,7 +117,9 @@ public class HomeController implements Initializable {
 
     public static ServerSocket serverSocket;
 
-    private static List<User>users;
+    public static List<Server> clients;
+
+    private static List<User>users = new ArrayList<User>();
 
     public static Quiz selectedQuiz;
 
@@ -125,6 +138,13 @@ public class HomeController implements Initializable {
         lb_totalUsers.textProperty().bind(observableTotalUsers);
         String totalUsers = String.valueOf(users.size());
         observableTotalUsers.set(totalUsers);
+
+        bt_startQ.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                startQuizValid();
+            }
+        });
     }
 
     public void switchMenus(ActionEvent event){
@@ -162,6 +182,7 @@ public class HomeController implements Initializable {
             question quest = new question(tf_question.getText(),tf_answer1.getText(),tf_answer2.getText(),
                     tf_answer3.getText(), tf_answer4.getText(), (Integer) cb_rightAnswer.getSelectionModel().getSelectedItem());
             questions.add(quest);
+            createQuestionPane();
             clearQuestion();
         }else{
             alert = new Alert(Alert.AlertType.ERROR);
@@ -174,6 +195,39 @@ public class HomeController implements Initializable {
                 alert.close();
             }
         }
+    }
+
+    public void createQuestionPane(){
+        int sizeInt = questions.size();
+        String size = String.valueOf(sizeInt);
+        Label newQ = customLabelQs(size);
+
+        pane_gridQus.setHalignment(newQ, HPos.CENTER);
+        pane_gridQus.setPadding(new Insets(10));
+        pane_gridQus.setHgap(3);
+        pane_gridQus.setVgap(3);
+        pane_gridQus.add(newQ, (sizeInt-1)%3, (sizeInt-1)/3);
+
+        System.out.println("Question added to the pane!" + (sizeInt-1)/3 + " " + (sizeInt-1)%3);
+    }
+
+    public Label customLabelQs(String text){
+        Label newLabel = new Label(text);
+        newLabel.setFont(new Font("Arial", 20));
+
+        newLabel.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+
+        // Set curved border radius
+        newLabel.setBorder(new javafx.scene.layout.Border(new javafx.scene.layout.BorderStroke(Color.BLACK,
+                javafx.scene.layout.BorderStrokeStyle.SOLID, CornerRadii.EMPTY, javafx.scene.layout.BorderWidths.DEFAULT)));
+
+        // Set text color
+        newLabel.setTextFill(Color.WHITE);
+
+        // Set padding
+        newLabel.setPadding(new Insets(10));
+
+        return newLabel;
     }
 
     public void createQuiz(){
@@ -269,10 +323,10 @@ public class HomeController implements Initializable {
 
     public void startQuiz(){
 
-        this.users = new ArrayList<User>();
+        users = new ArrayList<User>();
+        clients = new ArrayList<Server>();
         new Thread(new Runnable() {
 
-            public List<Server> clients = new ArrayList<Server>();
             @Override
             public void run() {
                 try{
@@ -309,6 +363,7 @@ public class HomeController implements Initializable {
     public void stopQuiz(){
         try{
             calculateMarks();
+            sendMarksToUsers();
             serverSocket.close();
         }catch (IOException e){
             e.printStackTrace();
@@ -316,8 +371,8 @@ public class HomeController implements Initializable {
         }
     }
 
-    public static void userRegister(String username){
-        User newUser = new User(username);
+    public static void userRegister(String username, int id){
+        User newUser = new User(username, id);
         users.add(newUser);
         System.out.println("User: " + username + "added!");
     }
@@ -336,6 +391,15 @@ public class HomeController implements Initializable {
             if(!user.getAnswers().isEmpty()){
                 Integer totalMarks = selectedQuiz.calculateMarks(user.getAnswers());
                 user.addMarks(totalMarks);
+            }
+        }
+    }
+
+    public void sendMarksToUsers(){
+        for(User user: users){
+            if(clients.get(user.getUserID()-1) != null){
+                Server s = clients.get(user.getUserID()-1);
+                s.sendMarks(user.getMarks().toString());
             }
         }
     }

@@ -13,20 +13,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="main_page" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quizserver.HomeController">
+<AnchorPane fx:id="main_page" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #ffffff;" stylesheets="@../styles/customLabel.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quizserver.HomeController">
    <children>
-      <AnchorPane prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #ff2052;">
+      <AnchorPane prefHeight="60.0" prefWidth="900.0" style="-fx-background-color: #ff2052;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="239.0" layoutY="11.0" text="Quiz APP" textFill="WHITE">
+            <Label layoutX="389.0" layoutY="11.0" text="Quiz APP" textFill="WHITE" AnchorPane.bottomAnchor="11.200000000000003" AnchorPane.topAnchor="11.0">
                <font>
                   <Font name="Bodoni MT Black" size="24.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="50.0" prefHeight="350.0" prefWidth="150.0" style="-fx-background-color: #f2f3f4;">
+      <AnchorPane layoutY="60.0" prefHeight="540.0" prefWidth="150.0" style="-fx-background-color: #f2f3f4;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
             <Button id="bt_home" fx:id="bt_home" layoutX="5.0" layoutY="56.0" mnemonicParsing="false" onAction="#switchMenus" prefHeight="40.0" prefWidth="140.0" text="Home">
                <font>
@@ -38,7 +39,7 @@
                   <Font name="Berlin Sans FB" size="16.0" />
                </font>
             </Button>
-            <Button id="bt_exit" fx:id="bt_exit" layoutX="5.0" layoutY="296.0" mnemonicParsing="false" onAction="#ExitButtonOnAction" prefHeight="40.0" prefWidth="140.0" text="Exit">
+            <Button id="bt_exit" fx:id="bt_exit" layoutX="5.0" layoutY="486.0" mnemonicParsing="false" onAction="#ExitButtonOnAction" prefHeight="40.0" prefWidth="140.0" text="Exit" AnchorPane.bottomAnchor="14.0">
                <font>
                   <Font name="Berlin Sans FB" size="16.0" />
                </font>
@@ -55,49 +56,49 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pane_home" layoutX="150.0" layoutY="50.0" prefHeight="350.0" prefWidth="450.0">
+      <AnchorPane fx:id="pane_home" layoutX="150.0" layoutY="60.0" prefHeight="540.0" prefWidth="750.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
-            <AnchorPane layoutX="330.0" prefHeight="350.0" prefWidth="120.0" style="-fx-background-color: #f2f3f4;">
+            <AnchorPane layoutX="610.0" layoutY="14.0" prefHeight="517.0" prefWidth="150.0" style="-fx-background-color: #f2f3f4;" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                <children>
-                  <Label layoutX="11.0" layoutY="14.0" prefHeight="87.0" prefWidth="98.0" text="Select a quiz for details" textAlignment="CENTER" wrapText="true">
+                  <Label alignment="CENTER" layoutX="11.0" layoutY="14.0" prefHeight="60.0" prefWidth="130.0" text="Select a quiz for details" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
                      <font>
                         <Font name="Bodoni MT Bold" size="14.0" />
                      </font>
                   </Label>
-                  <AnchorPane fx:id="pane_quizFunction" layoutX="10.0" layoutY="78.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #ffffff;">
+                  <AnchorPane fx:id="pane_quizFunction" layoutX="10.0" layoutY="78.0" prefHeight="278.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                      <children>
-                        <Button fx:id="bt_startQ" layoutX="12.0" layoutY="14.0" mnemonicParsing="false" onAction="#startQuizValid" prefWidth="80.0" text="Start" />
-                        <Button fx:id="bt_endQ" layoutX="12.0" layoutY="80.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="80.0" text="End" />
-                        <Button fx:id="bt_viewQ" layoutX="12.0" layoutY="47.0" mnemonicParsing="false" prefWidth="80.0" text="View" />
+                        <Button fx:id="bt_startQ" layoutX="12.0" layoutY="14.0" mnemonicParsing="false" onAction="#startQuizValid" prefWidth="80.0" text="Start" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+                        <Button fx:id="bt_endQ" layoutX="12.0" layoutY="80.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="80.0" text="End" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+                        <Button fx:id="bt_viewQ" layoutX="12.0" layoutY="47.0" mnemonicParsing="false" prefWidth="80.0" text="View" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
                      </children>
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="350.0" prefWidth="330.0">
+            <AnchorPane layoutY="14.0" prefHeight="350.0" prefWidth="588.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="162.39999999999998" AnchorPane.topAnchor="5.0">
                <children>
-                  <AnchorPane layoutX="26.0" layoutY="14.0" prefHeight="80.0" prefWidth="130.0" style="-fx-background-color: #0cc0df;">
+                  <AnchorPane layoutX="26.0" layoutY="14.0" prefHeight="80.0" prefWidth="230.0" style="-fx-background-color: #0cc0df;" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="15.0">
                      <children>
-                        <Label layoutX="23.0" layoutY="14.0" text="Total Users" textFill="WHITE">
+                        <Label layoutX="73.0" layoutY="14.0" text="Total Users" textFill="WHITE">
                            <font>
                               <Font name="Bodoni MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lb_totalUsers" alignment="CENTER" contentDisplay="CENTER" layoutX="43.0" layoutY="47.0" prefHeight="18.0" prefWidth="44.0" text="0" textFill="WHITE" />
+                        <Label fx:id="lb_totalUsers" alignment="CENTER" contentDisplay="CENTER" layoutX="93.0" layoutY="47.0" prefHeight="18.0" prefWidth="44.0" text="0" textFill="WHITE" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="178.0" layoutY="14.0" prefHeight="80.0" prefWidth="130.0" style="-fx-background-color: #0cc0df;">
+                  <AnchorPane layoutX="319.0" layoutY="14.0" prefHeight="80.0" prefWidth="230.0" style="-fx-background-color: #0cc0df;" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="15.0">
                      <children>
-                        <Label layoutX="19.0" layoutY="14.0" text="Total Quizes" textFill="WHITE">
+                        <Label layoutX="69.0" layoutY="14.0" text="Total Quizes" textFill="WHITE">
                            <font>
                               <Font name="Bodoni MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lb_totalQuiz" alignment="CENTER" layoutX="46.0" layoutY="47.0" prefHeight="18.0" prefWidth="38.0" text="0" textFill="WHITE" />
+                        <Label fx:id="lb_totalQuiz" alignment="CENTER" layoutX="96.0" layoutY="47.0" prefHeight="18.0" prefWidth="38.0" text="0" textFill="WHITE" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="26.0" layoutY="116.0" prefHeight="222.0" prefWidth="283.0" style="-fx-background-color: #f2f3f4;">
+                  <AnchorPane layoutX="26.0" layoutY="116.0" prefHeight="402.0" prefWidth="547.0" style="-fx-background-color: #f2f3f4;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                      <children>
-                        <ScrollPane fx:id="menu_scrolPane" layoutX="6.0" layoutY="6.0" prefHeight="208.0" prefWidth="270.0">
+                        <ScrollPane fx:id="menu_scrolPane" layoutX="6.0" layoutY="6.0" prefHeight="388.0" prefWidth="546.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                            <content>
                               <GridPane fx:id="menu_gridPane" prefHeight="22.0" prefWidth="103.0">
                                 <columnConstraints>
@@ -111,84 +112,113 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pane_create" layoutX="150.0" layoutY="50.0" prefHeight="350.0" prefWidth="450.0" visible="false">
+      <AnchorPane fx:id="pane_create" layoutX="150.0" layoutY="60.0" prefHeight="540.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
-            <AnchorPane prefHeight="350.0" prefWidth="330.0">
+            <AnchorPane prefHeight="530.0" prefWidth="580.0" style="-fx-background-color: #E8E8E8;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="5.0">
                <children>
-                  <Label layoutX="14.0" layoutY="22.0" text="Question">
+                  <Label layoutX="35.0" layoutY="80.0" text="Question" AnchorPane.leftAnchor="30.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField id="tf_question" fx:id="tf_question" layoutX="10.0" layoutY="50.0" prefHeight="26.0" prefWidth="310.0" promptText="question" />
-                  <Label layoutX="14.0" layoutY="89.0" text="Answer">
+                  <TextField id="tf_question" fx:id="tf_question" layoutX="31.0" layoutY="108.0" prefHeight="26.0" prefWidth="400.0" promptText="question" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" />
+                  <Label layoutX="30.0" layoutY="159.0" text="Answer" AnchorPane.leftAnchor="30.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="tf_answer1" layoutX="25.0" layoutY="123.0" prefHeight="26.0" prefWidth="294.0" />
-                  <Label layoutX="10.0" layoutY="126.0" text="1">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="tf_answer2" layoutX="25.0" layoutY="159.0" prefHeight="26.0" prefWidth="294.0" />
-                  <Label layoutX="10.0" layoutY="162.0" text="2">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="tf_answer3" layoutX="25.0" layoutY="198.0" prefHeight="26.0" prefWidth="294.0" />
-                  <Label layoutX="10.0" layoutY="201.0" text="3">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="tf_answer4" layoutX="25.0" layoutY="234.0" prefHeight="26.0" prefWidth="294.0" />
-                  <Label layoutX="10.0" layoutY="237.0" text="4">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="bt_createQ" layoutX="115.0" layoutY="310.0" mnemonicParsing="false" onAction="#createQuestion" prefWidth="100.0" text="Create" />
-                  <Label layoutX="14.0" layoutY="273.0" text="Right Answer">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <ComboBox fx:id="cb_rightAnswer" layoutX="115.0" layoutY="271.0" prefHeight="26.0" prefWidth="73.0" promptText="choose answer" />
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="330.0" prefHeight="350.0" prefWidth="120.0" style="-fx-background-color: #5ce1e6;">
-               <children>
-                  <Label layoutX="23.0" layoutY="31.0" text="Quiz Name">
+                  <TextField fx:id="tf_answer1" layoutX="153.0" layoutY="196.0" prefHeight="26.0" prefWidth="294.0" promptText="answer" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="30.0" />
+                  <Label layoutX="138.0" layoutY="199.0" text="1" AnchorPane.leftAnchor="40.0">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="tf_quizName" layoutX="10.0" layoutY="60.0" prefWidth="100.0" />
-                  <AnchorPane layoutX="8.0" layoutY="100.0" prefHeight="189.0" prefWidth="102.0" style="-fx-background-color: #ffffff;" />
-                  <Button fx:id="bt_finishQ" layoutX="10.0" layoutY="310.0" mnemonicParsing="false" onAction="#createQuiz" prefWidth="100.0" text="Finish" />
+                  <TextField fx:id="tf_answer2" layoutX="153.0" layoutY="232.0" prefHeight="26.0" prefWidth="294.0" promptText="answer" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="30.0" />
+                  <Label layoutX="138.0" layoutY="235.0" text="2" AnchorPane.leftAnchor="40.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tf_answer3" layoutX="153.0" layoutY="271.0" prefHeight="26.0" prefWidth="294.0" promptText="answer" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="30.0" />
+                  <Label layoutX="138.0" layoutY="274.0" text="3" AnchorPane.leftAnchor="40.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tf_answer4" layoutX="153.0" layoutY="307.0" prefHeight="26.0" prefWidth="294.0" promptText="answer" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="30.0" />
+                  <Label layoutX="138.0" layoutY="310.0" text="4" AnchorPane.leftAnchor="40.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="bt_createQ" layoutX="262.0" layoutY="481.0" mnemonicParsing="false" onAction="#createQuestion" prefWidth="100.0" text="Create" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="262.0" />
+                  <Label layoutX="141.0" layoutY="387.0" text="Right Answer" AnchorPane.leftAnchor="30.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="cb_rightAnswer" layoutX="141.0" layoutY="384.0" prefHeight="26.0" prefWidth="80.0" promptText="choose answer" AnchorPane.leftAnchor="140.0" />
+                  <Label layoutX="58.0" layoutY="28.0" prefHeight="27.0" prefWidth="141.0" text="Create question" AnchorPane.leftAnchor="60.0">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="330.0" prefHeight="350.0" prefWidth="150.0" style="-fx-background-color: #5ce1e6;" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+               <children>
+                  <Label alignment="CENTER" layoutX="39.0" layoutY="29.0" text="Quiz Name" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="38.400000000000006">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tf_quizName" layoutX="25.0" layoutY="60.0" prefWidth="130.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                  <AnchorPane layoutX="15.0" layoutY="129.0" prefHeight="340.0" prefWidth="120.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+                     <children>
+                        <GridPane fx:id="pane_gridQus" layoutX="-40.0" layoutY="80.0" prefHeight="340.0" prefWidth="160.00000000000003" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                        </GridPane>
+                     </children></AnchorPane>
+                  <Button fx:id="bt_finishQ" layoutX="25.0" layoutY="310.0" mnemonicParsing="false" onAction="#createQuiz" prefWidth="100.0" text="Finish" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" />
+                  <Label alignment="CENTER" layoutX="39.2" layoutY="95.0" prefHeight="20.0" prefWidth="73.0" text="Questions" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="38.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pane_summary" layoutX="150.0" layoutY="50.0" prefHeight="350.0" prefWidth="450.0" visible="false">
+      <AnchorPane fx:id="pane_summary" layoutX="150.0" layoutY="60.0" prefHeight="540.0" prefWidth="750.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
-            <AnchorPane layoutX="15.0" layoutY="14.0" prefHeight="150.0" prefWidth="422.0" style="-fx-background-color: #f2f3f4;">
+            <AnchorPane layoutX="15.0" layoutY="14.0" prefHeight="240.0" prefWidth="741.0" style="-fx-background-color: #f2f3f4;" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                <children>
-                  <TableView layoutX="130.0" layoutY="-40.0" prefHeight="160.0" prefWidth="422.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView layoutX="130.0" layoutY="-40.0" prefHeight="219.0" prefWidth="731.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="Number" />
-                      <TableColumn prefWidth="220.79998779296875" text="User Name" />
-                        <TableColumn minWidth="0.0" prefWidth="125.60003662109375" text="Marks" />
+                      <TableColumn prefWidth="138.3999971151352" text="Number" />
+                      <TableColumn prefWidth="262.4000701904297" text="User Name" />
+                        <TableColumn minWidth="0.0" prefWidth="177.59994506835938" text="Marks" />
+                        <TableColumn minWidth="0.0" prefWidth="140.0" text="Place" />
                     </columns>
                   </TableView>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="15.0" layoutY="175.0" prefHeight="162.0" prefWidth="422.0" style="-fx-background-color: #f2f3f4;">
+            <AnchorPane layoutX="14.0" layoutY="178.0" prefHeight="280.0" prefWidth="650.0" style="-fx-background-color: #f2f3f4;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
                <children>
-                  <BarChart layoutX="-7.0" layoutY="-98.0" prefHeight="302.4" prefWidth="493.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <BarChart layoutX="-7.0" layoutY="-98.0" prefHeight="302.4" prefWidth="493.6" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
