@@ -14,14 +14,13 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import org.jetbrains.annotations.NotNull;
 
-import java.io.Console;
-import java.io.IOException;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
@@ -117,33 +116,26 @@ public class HomeController implements Initializable {
     private TextField tf_quizName;
 
     private Alert alert;
-
-    private List<Quiz>quizzes = new ArrayList<>();
-
+    private List<Quiz>quizzes = new ArrayList<Quiz>();
     private List<question>questions = new ArrayList<>();
-
     private StringProperty observableTotalQuiz = new SimpleStringProperty();
-
     private StringProperty observableTotalUsers = new SimpleStringProperty();
-
     private Integer[] answerList = {1,2,3,4};
-
     public static ServerSocket serverSocket;
-
     public static List<Server> clients;
-
     private static List<User>users = new ArrayList<User>();
-
     public static Quiz selectedQuiz;
-
     public int selectedQuestion;
     public Label selectedQLabel = null;
+
+    public String filePath = "src/main/java/com/example/quizserver/quizData.ser";
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         displayUserName();
         answerListNumbers();
+        getFile();
 
         //observe total quiz
         lb_totalQuiz.textProperty().bind(observableTotalQuiz);
@@ -218,6 +210,13 @@ public class HomeController implements Initializable {
         String size = String.valueOf(sizeInt);
         Label newQ = customLabelQs(size);
 
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setRadius(5.0);
+        dropShadow.setOffsetX(3.0);
+        dropShadow.setOffsetY(3.0);
+
+        newQ.setEffect(dropShadow);
+
         newQ.setOnMouseClicked(event ->{
             questionSelect(sizeInt-1);
             toggleCreateEditQuestionDetails(true);
@@ -291,6 +290,8 @@ public class HomeController implements Initializable {
             }else{
                 Quiz quiz = new Quiz(tf_quizName.getText(),questions);
                 quizzes.add(quiz);
+                writeFile();
+                pane_gridQus.getChildren().clear();
 
                 alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Quiz Create");
@@ -315,6 +316,30 @@ public class HomeController implements Initializable {
             if(option.get().equals(ButtonType.OK)){
                 alert.close();
             }
+        }
+    }
+
+    public void writeFile(){
+        try{
+            FileOutputStream fileOut = new FileOutputStream(filePath);
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            objectOut.writeObject(quizzes);
+            System.out.println("File write Successful!");
+        } catch (IOException e) {
+            System.out.println("File write failed!");
+        }
+    }
+
+    public void getFile() {
+        try{
+            FileInputStream fileIn = new FileInputStream(filePath);
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+            Object obj = objectIn.readObject();
+            quizzes = (List<Quiz>) obj;
+
+            System.out.println("Object retrieved successfully");
+        }catch (IOException | ClassNotFoundException e){
+            System.out.println("File get failed!");
         }
     }
 

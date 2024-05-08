@@ -1,8 +1,9 @@
 package com.example.quizserver;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class question {
+public class question implements Serializable {
     private String question;
     private String answer1;
     private String answer2;
