@@ -56,7 +56,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pane_home" layoutX="150.0" layoutY="60.0" prefHeight="540.0" prefWidth="750.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+      <AnchorPane fx:id="pane_home" layoutX="150.0" layoutY="60.0" prefHeight="540.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
             <AnchorPane layoutX="610.0" layoutY="14.0" prefHeight="517.0" prefWidth="150.0" style="-fx-background-color: #f2f3f4;" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                <children>
@@ -112,7 +112,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pane_create" layoutX="150.0" layoutY="60.0" prefHeight="540.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+      <AnchorPane fx:id="pane_create" layoutX="150.0" layoutY="60.0" prefHeight="540.0" prefWidth="750.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
             <AnchorPane prefHeight="530.0" prefWidth="580.0" style="-fx-background-color: #E8E8E8;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="5.0">
                <children>
@@ -158,9 +158,16 @@
                      </font>
                   </Label>
                   <ComboBox fx:id="cb_rightAnswer" layoutX="141.0" layoutY="384.0" prefHeight="26.0" prefWidth="80.0" promptText="choose answer" AnchorPane.leftAnchor="140.0" />
-                  <Label layoutX="58.0" layoutY="28.0" prefHeight="27.0" prefWidth="141.0" text="Create question" AnchorPane.leftAnchor="60.0">
+                  <Label fx:id="lb_questionTitle" layoutX="58.0" layoutY="28.0" prefHeight="27.0" prefWidth="141.0" text="Create Question" AnchorPane.leftAnchor="60.0">
                      <font>
                         <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="bt_edit" layoutX="262.0" layoutY="480.0" mnemonicParsing="false" prefWidth="100.0" text="Edit" visible="false" />
+                  <Button fx:id="bt_createSelect" layoutX="420.0" layoutY="480.0" mnemonicParsing="false" onAction="#changeTheViewToCreate" prefWidth="100.0" text="Create" visible="false" />
+                  <Label fx:id="lb_createNewQuestion" layoutX="400.0" layoutY="445.0" text="Create New Question" visible="false">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
                </children>

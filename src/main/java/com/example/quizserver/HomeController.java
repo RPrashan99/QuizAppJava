@@ -20,6 +20,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Console;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -50,6 +51,12 @@ public class HomeController implements Initializable {
     private Button bt_startQ;
 
     @FXML
+    private Button bt_createSelect;
+
+    @FXML
+    private Button bt_edit;
+
+    @FXML
     private ComboBox<?> cb_rightAnswer;
 
     @FXML
@@ -63,6 +70,12 @@ public class HomeController implements Initializable {
 
     @FXML
     private Label lb_username;
+
+    @FXML
+    private Label lb_createNewQuestion;
+
+    @FXML
+    private Label lb_questionTitle;
 
     @FXML
     private AnchorPane main_page;
@@ -122,6 +135,9 @@ public class HomeController implements Initializable {
     private static List<User>users = new ArrayList<User>();
 
     public static Quiz selectedQuiz;
+
+    public int selectedQuestion;
+    public Label selectedQLabel = null;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -202,6 +218,14 @@ public class HomeController implements Initializable {
         String size = String.valueOf(sizeInt);
         Label newQ = customLabelQs(size);
 
+        newQ.setOnMouseClicked(event ->{
+            questionSelect(sizeInt-1);
+            toggleCreateEditQuestionDetails(true);
+            newQ.setStyle("-fx-border-color: black; -fx-background-color: lightblue;");
+            if(selectedQLabel != null) selectedQLabel.setStyle("-fx-border-color: black; -fx-background-color: lightgrey;");
+            selectedQLabel = newQ;
+        });
+
         pane_gridQus.setHalignment(newQ, HPos.CENTER);
         pane_gridQus.setPadding(new Insets(10));
         pane_gridQus.setHgap(3);
@@ -211,15 +235,29 @@ public class HomeController implements Initializable {
         System.out.println("Question added to the pane!" + (sizeInt-1)/3 + " " + (sizeInt-1)%3);
     }
 
+    public void questionSelect(int id){
+        clearQuestion();
+        selectedQuestion = id;
+        question selectedQ = questions.get(id);
+        tf_question.setText(selectedQ.getQuestion());
+        tf_answer1.setText(selectedQ.getAnswer1());
+        tf_answer2.setText(selectedQ.getAnswer2());
+        tf_answer3.setText(selectedQ.getAnswer3());
+        tf_answer4.setText(selectedQ.getAnswer4());
+        cb_rightAnswer.getSelectionModel().select(selectedQ.getRightAnswer()-1);
+    }
+
     public Label customLabelQs(String text){
         Label newLabel = new Label(text);
         newLabel.setFont(new Font("Arial", 20));
 
-        newLabel.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+//        newLabel.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+//
+//        // Set curved border radius
+//        newLabel.setBorder(new javafx.scene.layout.Border(new javafx.scene.layout.BorderStroke(Color.BLACK,
+//                javafx.scene.layout.BorderStrokeStyle.SOLID, CornerRadii.EMPTY, javafx.scene.layout.BorderWidths.DEFAULT)));
 
-        // Set curved border radius
-        newLabel.setBorder(new javafx.scene.layout.Border(new javafx.scene.layout.BorderStroke(Color.BLACK,
-                javafx.scene.layout.BorderStrokeStyle.SOLID, CornerRadii.EMPTY, javafx.scene.layout.BorderWidths.DEFAULT)));
+        newLabel.setStyle("-fx-border-color: black; -fx-background-color: lightgrey;");
 
         // Set text color
         newLabel.setTextFill(Color.WHITE);
@@ -411,6 +449,29 @@ public class HomeController implements Initializable {
 
         ObservableList listAnswers = FXCollections.observableArrayList(answerL);
         cb_rightAnswer.setItems(listAnswers);
+    }
+
+    public void toggleCreateEditQuestionDetails(Boolean needEdit){
+        if(selectedQLabel == null && needEdit){
+            bt_createQ.setVisible(false);
+            bt_edit.setVisible(true);
+            bt_createSelect.setVisible(true);
+            lb_createNewQuestion.setVisible(true);
+            lb_questionTitle.setText("Edit Question");
+        } else if (selectedQLabel != null && !needEdit) {
+            bt_createQ.setVisible(true);
+            bt_edit.setVisible(false);
+            bt_createSelect.setVisible(false);
+            lb_createNewQuestion.setVisible(false);
+            lb_questionTitle.setText("Create Question");
+            clearQuestion();
+        }
+    }
+
+    public void changeTheViewToCreate(){
+        toggleCreateEditQuestionDetails(false);
+        if(selectedQLabel != null) selectedQLabel.setStyle("-fx-border-color: black; -fx-background-color: lightgrey;");
+        selectedQLabel = null;
     }
 
     public void ExitButtonOnAction(ActionEvent event){

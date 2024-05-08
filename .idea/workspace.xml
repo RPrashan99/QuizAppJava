@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a2281c8a-90ea-48d9-9997-816729154d67" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/quizserver/cardQuizController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/quizserver/cardQuiz.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/styles/customLabel.css" afterDir="false" />
+    <list default="true" id="a2281c8a-90ea-48d9-9997-816729154d67" name="Changes" comment="Question select">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/quizserver/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/quizserver/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/quizserver/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/quizserver/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/quizserver/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/quizserver/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/quizserver/question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/quizserver/question.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/quizserver/home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/quizserver/home.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -98,12 +94,21 @@
       <option name="project" value="LOCAL" />
       <updated>1714788920884</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Window size increase and grid question add">
+      <option name="closed" value="true" />
+      <created>1714810360004</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1714810360004</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Server side gui and functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Server side gui and functions" />
+    <MESSAGE value="Window size increase and grid question add" />
+    <option name="LAST_COMMIT_MESSAGE" value="Window size increase and grid question add" />
   </component>
 </project>
