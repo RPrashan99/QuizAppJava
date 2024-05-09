@@ -19,6 +19,15 @@ public class cardQuizController implements Initializable {
     @FXML
     private Label lb_cardQuizNo;
 
+    private Quiz quizData;
+
+    public void setData(Quiz quiz){
+        this.quizData = quiz;
+
+        lb_cardQuizName.setText(quiz.getQuizName());
+        lb_cardQuizNo.setText(quiz.numOfQuestions());
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

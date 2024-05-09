@@ -56,7 +56,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pane_home" layoutX="150.0" layoutY="60.0" prefHeight="540.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+      <AnchorPane fx:id="pane_home" layoutX="150.0" layoutY="60.0" prefHeight="540.0" prefWidth="750.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
             <AnchorPane layoutX="610.0" layoutY="14.0" prefHeight="517.0" prefWidth="150.0" style="-fx-background-color: #f2f3f4;" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                <children>
@@ -209,16 +209,16 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pane_summary" layoutX="150.0" layoutY="60.0" prefHeight="540.0" prefWidth="750.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+      <AnchorPane fx:id="pane_summary" layoutX="150.0" layoutY="60.0" prefHeight="540.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
             <AnchorPane layoutX="15.0" layoutY="14.0" prefHeight="240.0" prefWidth="741.0" style="-fx-background-color: #f2f3f4;" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                <children>
-                  <TableView layoutX="130.0" layoutY="-40.0" prefHeight="219.0" prefWidth="731.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                  <TableView fx:id="marks_tableView" layoutX="130.0" layoutY="-40.0" prefHeight="219.0" prefWidth="731.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                     <columns>
-                      <TableColumn prefWidth="138.3999971151352" text="Number" />
-                      <TableColumn prefWidth="262.4000701904297" text="User Name" />
-                        <TableColumn minWidth="0.0" prefWidth="177.59994506835938" text="Marks" />
-                        <TableColumn minWidth="0.0" prefWidth="140.0" text="Place" />
+                      <TableColumn fx:id="marks_col_number" prefWidth="138.3999971151352" text="Number" />
+                      <TableColumn fx:id="marks_col_userName" prefWidth="262.4000701904297" text="User Name" />
+                        <TableColumn fx:id="marks_col_marks" minWidth="0.0" prefWidth="177.59994506835938" text="Marks" />
+                        <TableColumn fx:id="marks_col_place" minWidth="0.0" prefWidth="140.0" text="Place" />
                     </columns>
                   </TableView>
                </children>

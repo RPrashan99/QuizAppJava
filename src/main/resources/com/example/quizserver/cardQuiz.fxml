@@ -4,8 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="card_Quiz" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="240.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quizserver.cardQuizController">
+<AnchorPane fx:id="card_Quiz" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="240.0" style="-fx-border-color: #000000;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quizserver.cardQuizController">
    <children>
       <AnchorPane layoutX="8.0" layoutY="5.0" prefHeight="115.0" prefWidth="140.0" style="-fx-background-color: #E8E8E8;">
          <children>
@@ -14,7 +13,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="lb_cardQuizName" layoutX="13.0" layoutY="58.0" prefHeight="20.0" prefWidth="114.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="37.2" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="13.0" />
+            <Label fx:id="lb_cardQuizName" layoutX="13.0" layoutY="58.0" prefHeight="20.0" prefWidth="114.0" style="-fx-background-color: #ffffff;" textAlignment="CENTER" AnchorPane.bottomAnchor="37.2" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="13.0" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="157.0" layoutY="5.0" prefHeight="115.0" prefWidth="74.0" style="-fx-background-color: #E8E8E8;">
@@ -24,7 +23,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="lb_cardQuizNo" layoutX="17.0" layoutY="58.0" prefHeight="20.0" prefWidth="40.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="37.60000000000001" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" />
+            <Label fx:id="lb_cardQuizNo" layoutX="17.0" layoutY="58.0" prefHeight="20.0" prefWidth="40.0" style="-fx-background-color: #ffffff;" textAlignment="CENTER" AnchorPane.bottomAnchor="37.60000000000001" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" />
          </children>
       </AnchorPane>
    </children>

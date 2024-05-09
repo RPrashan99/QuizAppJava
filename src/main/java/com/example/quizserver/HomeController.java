@@ -14,6 +14,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -92,6 +93,21 @@ public class HomeController implements Initializable {
     private AnchorPane pane_quizFunction;
 
     @FXML
+    private TableColumn<Marks, String> marks_col_marks;
+
+    @FXML
+    private TableColumn<Marks, String> marks_col_number;
+
+    @FXML
+    private TableColumn<Marks, String> marks_col_place;
+
+    @FXML
+    private TableColumn<Marks, String> marks_col_userName;
+
+    @FXML
+    private TableView<Marks> marks_tableView;
+
+    @FXML
     private GridPane menu_gridPane;
 
     @FXML
@@ -127,8 +143,8 @@ public class HomeController implements Initializable {
     public static Quiz selectedQuiz;
     public int selectedQuestion;
     public Label selectedQLabel = null;
-
     public String filePath = "src/main/java/com/example/quizserver/quizData.ser";
+    private ObservableList<Quiz> cardQuizzes;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -136,6 +152,7 @@ public class HomeController implements Initializable {
         displayUserName();
         answerListNumbers();
         getFile();
+        quizDisplayCard();
 
         //observe total quiz
         lb_totalQuiz.textProperty().bind(observableTotalQuiz);
@@ -290,6 +307,7 @@ public class HomeController implements Initializable {
             }else{
                 Quiz quiz = new Quiz(tf_quizName.getText(),questions);
                 quizzes.add(quiz);
+                cardQuizzes.add(quiz);
                 writeFile();
                 pane_gridQus.getChildren().clear();
 
@@ -341,6 +359,40 @@ public class HomeController implements Initializable {
         }catch (IOException | ClassNotFoundException e){
             System.out.println("File get failed!");
         }
+    }
+
+    public void quizDisplayCard(){
+
+        cardQuizzes = FXCollections.observableArrayList(quizzes);
+
+        int row = 0;
+        int column = 0;
+
+        menu_gridPane.getRowConstraints().clear();
+        menu_gridPane.getColumnConstraints().clear();
+
+        for(int i = 0; i < cardQuizzes.size(); i++){
+
+            try{
+                FXMLLoader load = new FXMLLoader();
+                load.setLocation(getClass().getResource("cardQuiz.fxml"));
+                AnchorPane pane = load.load();
+                cardQuizController cardC = load.getController();
+                cardC.setData(cardQuizzes.get(i));
+
+                if(column == 2){
+                    column = 0;
+                    row += 1;
+                }
+
+                menu_gridPane.add(pane,column++, row);
+                GridPane.setMargin(pane, new Insets(10));
+            }catch (IOException e){
+                e.printStackTrace();
+                System.out.println("Quiz Display failed!");
+            }
+        }
+
     }
 
     public void updateTotalQuizValue(){
@@ -427,6 +479,7 @@ public class HomeController implements Initializable {
         try{
             calculateMarks();
             sendMarksToUsers();
+            prepareMarksForTable();
             serverSocket.close();
         }catch (IOException e){
             e.printStackTrace();
@@ -458,6 +511,7 @@ public class HomeController implements Initializable {
         }
     }
 
+    //think about use userMarks list than users list
     public void sendMarksToUsers(){
         for(User user: users){
             if(clients.get(user.getUserID()-1) != null){
@@ -497,6 +551,39 @@ public class HomeController implements Initializable {
         toggleCreateEditQuestionDetails(false);
         if(selectedQLabel != null) selectedQLabel.setStyle("-fx-border-color: black; -fx-background-color: lightgrey;");
         selectedQLabel = null;
+    }
+
+    //untested
+    private ObservableList<Marks> observableUsers;
+    public void prepareMarksForTable(){
+        List<Marks> userMarks = new ArrayList<>();
+        var count = 1;
+        for(User user: users){
+            Marks newMark = new Marks(count, user.getUserName(), user.getMarks());
+        }
+
+        Collections.sort(userMarks, new QuizScoreComparator());
+
+        var place = 1;
+        for (Marks mark: userMarks){
+            mark.setPlace(place);
+            place++;
+        }
+
+        observableUsers = FXCollections.observableArrayList(userMarks);
+
+        marksTableShow();
+    }
+    public void marksTableShow(){
+
+        marks_col_number.setCellValueFactory(new PropertyValueFactory<>("number"));
+        marks_col_userName.setCellValueFactory(new PropertyValueFactory<>("userName"));
+        marks_col_marks.setCellValueFactory(new PropertyValueFactory<>("marks"));
+        marks_col_place.setCellValueFactory(new PropertyValueFactory<>("place"));
+
+        marks_tableView.setItems(observableUsers);
+
+        System.out.println("Marks table show passed");
     }
 
     public void ExitButtonOnAction(ActionEvent event){

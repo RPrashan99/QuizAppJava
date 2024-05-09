@@ -45,4 +45,7 @@ public class Quiz implements Serializable {
 
         return marks;
     }
+    public String numOfQuestions(){
+        return Integer.toString(questions.size());
+    }
 }
