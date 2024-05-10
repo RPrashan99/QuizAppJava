@@ -51,6 +51,9 @@ public class HomeController implements Initializable {
     private Button bt_startQ;
 
     @FXML
+    private Button bt_viewQ;
+
+    @FXML
     private Button bt_createSelect;
 
     @FXML
@@ -173,6 +176,15 @@ public class HomeController implements Initializable {
     }
 
     public void switchMenus(ActionEvent event){
+
+        if(bt_startQ.isVisible() && selectedQuizPane != null){
+            bt_startQ.setVisible(false);
+            bt_viewQ.setVisible(false);
+            bt_endQ.setVisible(false);
+            selectedQuiz = null;
+            selectedQuizPane.setStyle("-fx-background-color: #F9987A; -fx-border-color: black;");
+            selectedQuizPane = null;
+        }
 
         if(event.getSource() == bt_home){
             if(!pane_home.isVisible()){
@@ -361,6 +373,7 @@ public class HomeController implements Initializable {
         }
     }
 
+    private AnchorPane selectedQuizPane;
     public void quizDisplayCard(){
 
         cardQuizzes = FXCollections.observableArrayList(quizzes);
@@ -380,6 +393,14 @@ public class HomeController implements Initializable {
                 cardQuizController cardC = load.getController();
                 cardC.setData(cardQuizzes.get(i));
 
+                int finalI = i;
+                pane.setOnMouseClicked(event->{
+                    quizSelect(cardQuizzes.get(finalI));
+                    pane.setStyle("-fx-background-color: #C56018; -fx-border-color: #803704;");
+                    if(selectedQuizPane != null){selectedQuizPane.setStyle("-fx-background-color: #F9987A; -fx-border-color: black;");}
+                    selectedQuizPane = pane;
+                });
+
                 if(column == 2){
                     column = 0;
                     row += 1;
@@ -393,6 +414,15 @@ public class HomeController implements Initializable {
             }
         }
 
+    }
+
+    public void quizSelect(Quiz quiz){
+        selectedQuiz = quiz;
+        if(!bt_startQ.isVisible() && !bt_endQ.isVisible()){
+            bt_startQ.setVisible(true);
+            bt_viewQ.setVisible(true);
+            bt_endQ.setVisible(true);
+        }
     }
 
     public void updateTotalQuizValue(){
@@ -421,8 +451,18 @@ public class HomeController implements Initializable {
     }
 
     public void startQuizValid(){
-        if(selectedQuiz != null){
+        if(selectedQuiz != null && !isQuizStarted){
             startQuiz();
+        }else if(isQuizStarted){
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Quiz Start Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Another Quiz in progress!");
+            Optional<ButtonType> option = alert.showAndWait();
+
+            if(option.get().equals(ButtonType.OK)){
+                alert.close();
+            }
         }else{
             alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Quiz Start Error");
@@ -436,6 +476,8 @@ public class HomeController implements Initializable {
         }
     }
 
+    private static boolean isQuizStarted = false;
+    private Quiz startedQuiz;
     public void startQuiz(){
 
         users = new ArrayList<User>();
@@ -447,13 +489,20 @@ public class HomeController implements Initializable {
                 try{
                     serverSocket = new ServerSocket(1234);
                     int current_clients = 1;
+                    startedQuiz = selectedQuiz;
+                    isQuizStarted = true;
+                    bt_startQ.setDisable(true);
+                    System.out.println("Server Started!");
 
                     while(true){
                         Socket client = serverSocket.accept();
 
-                        Server server = new Server(client, current_clients);
-                        server.initialClientNumber(current_clients);
+                        Server server = new Server(client, current_clients, selectedQuiz);
                         server.start();
+                        server.initialClientNumber(current_clients);
+
+                        //send started quiz
+                        //server.sendQuest(startedQuiz.createQuizString());
 
                         String entryMessage = "User " + current_clients + " Connected";
                         System.out.println(entryMessage);
@@ -462,13 +511,13 @@ public class HomeController implements Initializable {
                         clients.add(server);
                     }
                 }catch (IOException e) {
-                    e.printStackTrace();
                     System.out.println("Error creating server socket");
                 } finally {
                     try {
                         serverSocket.close();
+                        System.out.println("Server socket close!");
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        System.out.println("Server socket error!");
                     }
                 }
             }
@@ -477,6 +526,9 @@ public class HomeController implements Initializable {
 
     public void stopQuiz(){
         try{
+            isQuizStarted = false;
+            bt_startQ.setDisable(false);
+            bt_endQ.setVisible(false);
             calculateMarks();
             sendMarksToUsers();
             prepareMarksForTable();
@@ -490,13 +542,14 @@ public class HomeController implements Initializable {
     public static void userRegister(String username, int id){
         User newUser = new User(username, id);
         users.add(newUser);
-        System.out.println("User: " + username + "added!");
+        System.out.println("User: " + username + " added!");
     }
 
     public static void recordMarks(String username, String question, String answer){
         for(User user: users){
             if(user.getUserName().equals(username)){
                 user.addAnswers(Integer.parseInt(answer));
+                System.out.println("User: "+username+" marks added");
                 break;
             }
         }
@@ -560,6 +613,7 @@ public class HomeController implements Initializable {
         var count = 1;
         for(User user: users){
             Marks newMark = new Marks(count, user.getUserName(), user.getMarks());
+            userMarks.add(newMark);
         }
 
         Collections.sort(userMarks, new QuizScoreComparator());

@@ -4,26 +4,26 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="card_Quiz" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="240.0" style="-fx-border-color: #000000;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quizserver.cardQuizController">
+<AnchorPane fx:id="card_Quiz" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="240.0" style="-fx-border-color: #000000; -fx-background-color: #F9987A; -fx-background-radius: 10; -fx-border-radius: 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quizserver.cardQuizController">
    <children>
-      <AnchorPane layoutX="8.0" layoutY="5.0" prefHeight="115.0" prefWidth="140.0" style="-fx-background-color: #E8E8E8;">
+      <AnchorPane layoutX="8.0" layoutY="5.0" prefHeight="112.0" prefWidth="140.0" style="-fx-background-color: #E8E8E8; -fx-background-radius: 10;">
          <children>
-            <Label layoutX="14.0" layoutY="14.0" text="Quiz name" AnchorPane.leftAnchor="12.8">
+            <Label layoutX="24.0" layoutY="14.0" text="Quiz name" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="25.599999999999994" AnchorPane.topAnchor="14.0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="lb_cardQuizName" layoutX="13.0" layoutY="58.0" prefHeight="20.0" prefWidth="114.0" style="-fx-background-color: #ffffff;" textAlignment="CENTER" AnchorPane.bottomAnchor="37.2" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="13.0" />
+            <Label fx:id="lb_cardQuizName" layoutX="13.0" layoutY="66.0" prefHeight="20.0" prefWidth="114.0" style="-fx-background-color: #ffffff;" textAlignment="CENTER" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="12.599999999999994" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="157.0" layoutY="5.0" prefHeight="115.0" prefWidth="74.0" style="-fx-background-color: #E8E8E8;">
+      <AnchorPane layoutX="157.0" layoutY="5.0" prefHeight="112.0" prefWidth="74.0" style="-fx-background-color: #E8E8E8; -fx-background-radius: 10;">
          <children>
-            <Label layoutX="5.0" layoutY="7.0" prefHeight="42.0" prefWidth="64.0" text="No. of Questions" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+            <Label layoutX="5.0" layoutY="13.0" prefHeight="42.0" prefWidth="64.0" text="No. of Questions" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="4.599999999999994">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="lb_cardQuizNo" layoutX="17.0" layoutY="58.0" prefHeight="20.0" prefWidth="40.0" style="-fx-background-color: #ffffff;" textAlignment="CENTER" AnchorPane.bottomAnchor="37.60000000000001" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" />
+            <Label fx:id="lb_cardQuizNo" layoutX="12.0" layoutY="65.0" prefHeight="20.0" prefWidth="40.0" style="-fx-background-color: #ffffff;" textAlignment="CENTER" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" />
          </children>
       </AnchorPane>
    </children>
