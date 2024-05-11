@@ -606,7 +606,7 @@ public class HomeController implements Initializable {
         selectedQLabel = null;
     }
 
-    //untested
+    //tested
     private ObservableList<Marks> observableUsers;
     public void prepareMarksForTable(){
         List<Marks> userMarks = new ArrayList<>();
